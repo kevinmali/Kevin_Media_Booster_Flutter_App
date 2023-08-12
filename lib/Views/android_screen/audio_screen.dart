@@ -11,7 +11,7 @@ class audio extends StatefulWidget {
 class _audioState extends State<audio> {
   AssetsAudioPlayer assetsAudioPlayer = AssetsAudioPlayer();
   playAudio() {
-    assetsAudioPlayer.open(Audio(""));
+    assetsAudioPlayer.open(Audio("Asset/audio_player/maan.mp3"),);
   }
   @override
   void initState() {
@@ -30,6 +30,7 @@ class _audioState extends State<audio> {
                     Container(
                       height: 400,
                       width: 360,
+                      alignment: Alignment.bottomCenter,
                       decoration: BoxDecoration(
                         // color: Colors.orange,
                         image: DecorationImage(image: AssetImage("Asset/images/images.png"),fit: BoxFit.fill),
@@ -38,7 +39,10 @@ class _audioState extends State<audio> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("${snapshot.data?.inHours} : ${snapshot.data?.inMinutes} : ${snapshot.data?.inSeconds}",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),),
+                        Text("${snapshot.data?.inHours} : "
+                            "${snapshot.data?.inMinutes} : "
+                            "${snapshot.data?.inSeconds}",
+                          style: TextStyle(color: Colors.white,fontSize: 24,fontWeight: FontWeight.bold),),
                       ],
                   ),
                     );

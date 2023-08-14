@@ -1,5 +1,7 @@
-import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
+import 'package:whtsapp/model/audio_model.dart';
+
+import '../../model/list_audio.dart';
 
 class audio extends StatefulWidget {
   const audio({super.key});
@@ -9,70 +11,39 @@ class audio extends StatefulWidget {
 }
 
 class _audioState extends State<audio> {
-  AssetsAudioPlayer assetsAudioPlayer = AssetsAudioPlayer();
-  playAudio() {
-    assetsAudioPlayer.open(Audio("Asset/audio_player/maan.mp3"),);
-  }
   @override
-  void initState() {
-    super.initState();
-    playAudio();
-  }
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
           children: [
-            StreamBuilder(
-                stream : assetsAudioPlayer.currentPosition,
-                builder:(context,snapshot){
-                  return
-                    Container(
-                      height: 400,
-                      width: 360,
-                      alignment: Alignment.bottomCenter,
-                      decoration: BoxDecoration(
-                        // color: Colors.orange,
-                        image: DecorationImage(image: AssetImage("Asset/images/images.png"),fit: BoxFit.fill),
-                        borderRadius: BorderRadius.circular(30),
+            Column(
+                children: listsong
+                    .map(
+                      (e) => GestureDetector(
+                        onTap: () {
+                          Model m = Model(
+                            audio: e['audio'],
+                            image: e['image'],
+                            title: e['title'],
+                          );
+                          Navigator.pushNamed(context, 'song_details',
+                              arguments: m);
+                        },
+                        child: Container(
+                          height: 200,
+                          width: 390,
+                          margin: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage(e['image']),
+                                fit: BoxFit.fill),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
                       ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("${snapshot.data?.inHours} : "
-                            "${snapshot.data?.inMinutes} : "
-                            "${snapshot.data?.inSeconds}",
-                          style: TextStyle(color: Colors.white,fontSize: 24,fontWeight: FontWeight.bold),),
-                      ],
-                  ),
-                    );
-                }
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Container(
-              height: 120,
-              width: 360,
-              decoration: BoxDecoration(
-                color: Colors.orange.withOpacity(0.25),
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  IconButton(onPressed: () async {
-                    await assetsAudioPlayer.play();
-                  }, icon: Icon(Icons.play_arrow,size: 40,),),
-                  IconButton(onPressed: () async {
-                    await assetsAudioPlayer.pause();
-                  }, icon: Icon(Icons.pause,size: 40,),),
-                  IconButton(onPressed: () async {
-                    await assetsAudioPlayer.stop();
-                  }, icon: Icon(Icons.stop,size: 40,),),
-                ],
-              ),
-            ),
+                    )
+                    .toList()),
           ],
         ),
       ),

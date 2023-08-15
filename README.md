@@ -1,16 +1,7 @@
-# whtsapp
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![live_video](https://github.com/kevinmali/Kevin_Media_Booster_Flutter_App/assets/132121875/ca86f606-dc41-4144-ae71-7ea36ea5101d)
+![video_screen2](https://github.com/kevinmali/Kevin_Media_Booster_Flutter_App/assets/132121875/5c9fd671-758b-4ef9-80cb-c53d8006a051)
+![video_screen](https://github.com/kevinmali/Kevin_Media_Booster_Flutter_App/assets/132121875/5e5fda6e-1ae1-4099-aec6-91d62b8d6fee)
+![play_song](https://github.com/kevinmali/Kevin_Media_Booster_Flutter_App/assets/132121875/8caee93c-40de-408e-92fa-f662582a4076)
+![song2_screen](https://github.com/kevinmali/Kevin_Media_Booster_Flutter_App/assets/132121875/358ea42d-40d5-4d32-a036-2d77c7be8bce)
+![song_screen](https://github.com/kevinmali/Kevin_Media_Booster_Flutter_App/assets/132121875/9cc2c085-36a7-447a-a247-abbf157ba7fe)
+![splace_screen](https://github.com/kevinmali/Kevin_Media_Booster_Flutter_App/assets/132121875/4c6208f5-ac10-4bcf-b9c0-0fcadde9f759)

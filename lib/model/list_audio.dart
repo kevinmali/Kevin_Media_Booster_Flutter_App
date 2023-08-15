@@ -15,13 +15,13 @@ List<Map<String, dynamic>> listsong = [
     'image': "Asset/images/3.jpg",
   },
   {
-    'audio': "Asset/audio_player/maan.mp3",
-    'title': "Pyaar Hota Kayi Baar Hai",
+    'audio': "Asset/audio_player/PyaarHotaKayi.mp3",
+    'title': "Pyaar Hota",
     'image': "Asset/images/4.jpg",
   },
   {
-    'audio': "Asset/audio_player/PyaarHotaKayi.mp3",
-    'title': "Maan Meri jaan",
+    'audio': "Asset/audio_player/maan.mp3",
+    'title': "Maan Meri jaan ",
     'image': "Asset/images/5.jpg",
   },
   {

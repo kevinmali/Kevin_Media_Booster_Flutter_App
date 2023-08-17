@@ -1,4 +1,8 @@
+import 'dart:math';
+
+import 'package:action_slider/action_slider.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
 import 'package:whtsapp/model/audio_model.dart';
 
@@ -23,7 +27,7 @@ class _song_pageState extends State<song_page> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Song",
+          "MX Player",
           style: TextStyle(
               color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
         ),
@@ -31,7 +35,7 @@ class _song_pageState extends State<song_page> {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
               margin: EdgeInsets.all(20),
@@ -46,21 +50,15 @@ class _song_pageState extends State<song_page> {
             StreamBuilder(
                 stream: assetsAudioPlayer.currentPosition,
                 builder: (context, snapshot) {
-                  return Container(
-                    height: 80,
-                    width: 360,
-                    decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  return BlurryContainer(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text(
                           data.title,
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 24,
+                              fontSize: 26,
                               fontWeight: FontWeight.bold),
                         ),
                         Text(
@@ -72,49 +70,79 @@ class _song_pageState extends State<song_page> {
                               fontSize: 24,
                               fontWeight: FontWeight.bold),
                         ),
+                        ActionSlider.dual(
+                          backgroundBorderRadius: BorderRadius.circular(10.0),
+                          foregroundBorderRadius: BorderRadius.circular(10.0),
+                          width: 300.0,
+                          backgroundColor: Colors.white,
+                          startChild: const Text('Start'),
+                          endChild: const Text('End'),
+                          icon: Padding(
+                            padding: const EdgeInsets.only(right: 2.0),
+                            child: Transform.rotate(
+                                angle: 0.5 * pi,
+                                child: const Icon(Icons.unfold_more_rounded,
+                                    size: 28.0)),
+                          ),
+                          startAction: (controller) async {
+                            controller.loading(); //starts loading animation
+                            await Future.delayed(const Duration(seconds: 3));
+                            controller.success(); //starts success animation
+                            await Future.delayed(const Duration(seconds: 1));
+                            controller.reset(); //resets the slider
+                          },
+                          endAction: (controller) async {
+                            controller.loading(); //starts loading animation
+                            await Future.delayed(const Duration(seconds: 3));
+                            controller.success(); //starts success animation
+                            await Future.delayed(const Duration(seconds: 1));
+                            controller.reset(); //resets the slider
+                          },
+                        ),
                       ],
+                    ),
+                    blur: 10,
+                    width: 360,
+                    height: 200,
+                    elevation: 0,
+                    color: Colors.grey.shade400,
+                    padding: const EdgeInsets.all(8),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(20),
                     ),
                   );
                 }),
-            Container(
-              height: 80,
-              width: 360,
-              decoration: BoxDecoration(
-                color: Colors.grey,
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      playAudio(data.audio);
-                    },
-                    icon: Icon(
-                      Icons.play_arrow,
-                      size: 40,
-                    ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    playAudio(data.audio);
+                  },
+                  icon: Icon(
+                    Icons.play_arrow,
+                    size: 40,
                   ),
-                  IconButton(
-                    onPressed: () async {
-                      await assetsAudioPlayer.pause();
-                    },
-                    icon: Icon(
-                      Icons.pause,
-                      size: 40,
-                    ),
+                ),
+                IconButton(
+                  onPressed: () async {
+                    await assetsAudioPlayer.pause();
+                  },
+                  icon: Icon(
+                    Icons.pause,
+                    size: 40,
                   ),
-                  IconButton(
-                    onPressed: () async {
-                      await assetsAudioPlayer.stop();
-                    },
-                    icon: Icon(
-                      Icons.stop,
-                      size: 40,
-                    ),
+                ),
+                IconButton(
+                  onPressed: () async {
+                    await assetsAudioPlayer.stop();
+                  },
+                  icon: Icon(
+                    Icons.stop,
+                    size: 40,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ],
         ),

@@ -40,6 +40,9 @@ dependencies:
   chewie: ^1.7.0
   introduction_screen:
   shared_preferences: ^2.2.0
+  action_slider: ^0.7.0
+  blurrycontainer: ^1.0.2
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:

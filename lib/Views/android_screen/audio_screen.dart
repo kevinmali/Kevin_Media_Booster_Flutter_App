@@ -1,3 +1,5 @@
+import 'package:carousel_slider/carousel_controller.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:whtsapp/model/audio_model.dart';
 
@@ -11,14 +13,27 @@ class audio extends StatefulWidget {
 }
 
 class _audioState extends State<audio> {
+  CarouselController carouselController = CarouselController();
+  int i = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Column(
-                children: listsong
+            CarouselSlider(
+                carouselController: carouselController,
+                options: CarouselOptions(
+                    height: 700,
+                    viewportFraction: 0.6,
+                    enlargeCenterPage: true,
+                    scrollDirection: Axis.vertical,
+                    onPageChanged: (val, _) {
+                      setState(() {
+                        i = val;
+                      });
+                    }),
+                items: listsong
                     .map(
                       (e) => GestureDetector(
                         onTap: () {
@@ -31,7 +46,7 @@ class _audioState extends State<audio> {
                               arguments: m);
                         },
                         child: Container(
-                          height: 200,
+                          height: 360,
                           width: 390,
                           margin: EdgeInsets.all(10),
                           decoration: BoxDecoration(

@@ -26,7 +26,7 @@ class _song_pageState extends State<song_page> {
     Model data = ModalRoute.of(context)!.settings.arguments as Model;
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "MX Player",
           style: TextStyle(
               color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
@@ -38,7 +38,7 @@ class _song_pageState extends State<song_page> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
-              margin: EdgeInsets.all(20),
+              margin: const EdgeInsets.all(20),
               height: 400,
               width: 360,
               decoration: BoxDecoration(
@@ -51,12 +51,21 @@ class _song_pageState extends State<song_page> {
                 stream: assetsAudioPlayer.currentPosition,
                 builder: (context, snapshot) {
                   return BlurryContainer(
+                    blur: 10,
+                    width: 360,
+                    height: 200,
+                    elevation: 0,
+                    color: Colors.grey.shade400,
+                    padding: const EdgeInsets.all(8),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(20),
+                    ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text(
                           data.title,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 26,
                               fontWeight: FontWeight.bold),
@@ -65,7 +74,7 @@ class _song_pageState extends State<song_page> {
                           "${snapshot.data?.inHours} : "
                           "${snapshot.data?.inMinutes} : "
                           "${snapshot.data?.inSeconds}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 24,
                               fontWeight: FontWeight.bold),
@@ -101,15 +110,6 @@ class _song_pageState extends State<song_page> {
                         ),
                       ],
                     ),
-                    blur: 10,
-                    width: 360,
-                    height: 200,
-                    elevation: 0,
-                    color: Colors.grey.shade400,
-                    padding: const EdgeInsets.all(8),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(20),
-                    ),
                   );
                 }),
             Row(
@@ -119,7 +119,7 @@ class _song_pageState extends State<song_page> {
                   onPressed: () {
                     playAudio(data.audio);
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.play_arrow,
                     size: 40,
                   ),
@@ -128,7 +128,7 @@ class _song_pageState extends State<song_page> {
                   onPressed: () async {
                     await assetsAudioPlayer.pause();
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.pause,
                     size: 40,
                   ),
@@ -137,7 +137,7 @@ class _song_pageState extends State<song_page> {
                   onPressed: () async {
                     await assetsAudioPlayer.stop();
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.stop,
                     size: 40,
                   ),

@@ -58,7 +58,8 @@ class _intro_pageState extends State<intro_page> {
                 decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
-                      image: AssetImage("Asset/intro_videos/8V9H.gif"),
+                      image:
+                          AssetImage("Asset/intro_videos/mxplayer_intro.gif"),
                     )),
               ),
             ),

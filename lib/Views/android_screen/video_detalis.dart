@@ -17,7 +17,7 @@ class _Video_detalisState extends State<Video_detalis> {
   void initState() {
     super.initState();
     videoPlayerController =
-        VideoPlayerController.asset("Asset/video_player/badsha.mp4")
+        VideoPlayerController.asset("Asset/video_player/deshmere.3gpp")
           ..initialize().then(
             (value) => () {
               setState(() {});
@@ -27,8 +27,15 @@ class _Video_detalisState extends State<Video_detalis> {
         ChewieController(videoPlayerController: videoPlayerController);
   }
 
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    videoPlayerController.dispose();
+    chewieController.dispose();
+  }
+
   Widget build(BuildContext context) {
-    Vmodel video = ModalRoute.of(context)!.settings.arguments as Vmodel;
     return Scaffold(
       appBar: AppBar(
         title: Text(

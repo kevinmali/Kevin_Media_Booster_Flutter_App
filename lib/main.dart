@@ -1,19 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:whtsapp/Views/android_screen/splace_screen.dart';
 
 import 'Views/android_screen/audio_detalis.dart';
 import 'Views/android_screen/audio_screen.dart';
+import 'Views/android_screen/intro_screen.dart';
 import 'Views/android_screen/video_detalis.dart';
 import 'Views/android_screen/video_player.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  SharedPreferences preferences = await SharedPreferences.getInstance();
+  bool isvisited = preferences.getBool("isIntroVisited") ?? false;
   runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: true),
       darkTheme: ThemeData.dark(),
       routes: {
         '/': (context) => Splash(),
+        'intro_page': (context) => intro_page(),
         'Home_page': (context) => Home(),
         'song_details': (context) => song_page(),
         'video_details': (context) => Video_detalis(),
